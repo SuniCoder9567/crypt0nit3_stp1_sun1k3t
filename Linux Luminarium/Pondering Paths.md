@@ -1,5 +1,5 @@
 # THE ROOT  
-For this chal, we have to provide the path _/pwn_ to invoke the program which provides us with the flag.  
+For this chal, we have to provide the path _/pwn_ to invoke the program which provides us with the flag. _pwn_ is the executable program which is present in the root directory.
 ```
 hacker@paths~the-root:~$ /pwn
 BOOM!!!
@@ -10,7 +10,7 @@ pwn.college{MEiHwPADvnKGFyW9eWM4aOnu2Og.dhzN5QDL3AjN1czW}
 > FLAG -> pwn.college{MEiHwPADvnKGFyW9eWM4aOnu2Og.dhzN5QDL3AjN1czW}
 
 # PROGRAM AND ABSOLUTE PATHS  
-For this chal, we have to provide the path _/challenge/run_ to invoke the program which provides us with the flag.
+For this chal, we have to provide the path _/challenge/run_ to invoke the program which provides us with the flag. _challenge_ is a directory located in the root directory which contains the executable program _run_.
 ```
 hacker@paths~program-and-absolute-paths:/$ /challenge/run
 Correct!!!
