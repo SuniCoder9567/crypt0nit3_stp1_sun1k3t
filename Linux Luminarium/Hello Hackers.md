@@ -1,5 +1,7 @@
 # INTRO TO COMMANDS 
-<font size = "4">For this chal, all we had to do is give the command _hello_ and it displayed the flag  
+<font size = "12">For this chal, all we had to do is give the command _hello_ and it displayed the flag 
+
+> wow
 
 ''' hacker@hello~intro-to-commands:~$ hello
 Success! Here is your flag:
