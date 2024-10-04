@@ -20,7 +20,7 @@ pwn.college{UlJaeNSDsI4kPN4ylzs2usXlG6O.dVDN1QDL3AjN1czW}
 ```
 >FLAG -> pwn.college{UlJaeNSDsI4kPN4ylzs2usXlG6O.dVDN1QDL3AjN1czW}
 
-#POSITION THY SELF  
+# POSITION THY SELF  
 For this chal, we have to go to the required directory _/usr/share/doc/fontconfig_ to execute the _/challenge/run_ program which provides us with the flag.
 ```
 hacker@paths~position-thy-self:~$ ~
