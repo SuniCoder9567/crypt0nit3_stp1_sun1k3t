@@ -55,7 +55,7 @@ pwn.college{8UrIcmfcI2FXGEigaEwcU9G63uR.ddDN1QDL3AjN1czW}
 > FLAG -> pwn.college{8UrIcmfcI2FXGEigaEwcU9G63uR.ddDN1QDL3AjN1czW}
 
 # POSITION YET ELSEWHERE 
-This chain of chals repeatedly making us do the same task is just to make us learn how to change directories using the "cd" command, we repeat the same task as the above two chals and get our flag.
+This chain of chals repeatedly making us do the same task is just to make us learn how to change directories using the **cd** command, we repeat the same task as the above two chals and get our flag.
 ```
 hacker@paths~position-yet-elsewhere:~$ /challenge/run
 Incorrect...
