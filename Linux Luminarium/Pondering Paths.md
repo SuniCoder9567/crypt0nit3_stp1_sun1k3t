@@ -114,3 +114,12 @@ hacker@paths~implicit-relative-path:/challenge$
 ```
 > FLAG -> pwn.college{kFY-T728ooCnnxNEHEWp27yJxZP.dFTN1QDL3AjN1czW}
 
+# HOME SWEET HOME
+For this chal, we had to execute the _run_ program by providing the absolute path of _home/hacker/~_ aka _~/~(or any single character)_ as an argument to _/challenge/run_, where the contents of /challenge/run are copied to _~_ file in the _home/hacker_ or _~_ directory and displayed to provide us with the flag.
+```
+hacker@paths~home-sweet-home:~$ /challenge/run ~/~
+Writing the file to /home/hacker/~!
+... and reading it back to you:
+pwn.college{E3AlGG7LUfrd_mUqxWSCvvonxKZ.dNzM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{E3AlGG7LUfrd_mUqxWSCvvonxKZ.dNzM4QDL3AjN1czW}
