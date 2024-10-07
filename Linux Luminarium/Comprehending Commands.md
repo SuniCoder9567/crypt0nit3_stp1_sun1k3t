@@ -51,3 +51,38 @@ Yahaha, you found me! Here is your flag:
 pwn.college{0b8ByXanOROw5gA5qDjMDiNH6-O.dhjM4QDL3AjN1czW}
 ```
 > FLAG-> pwn.college{0b8ByXanOROw5gA5qDjMDiNH6-O.dhjM4QDL3AjN1czW}
+
+# TOUCHING FILES
+For this chal, we have to follow the instructions of the chal and create two files named _tmp/pwn_ and _tmp/college_ using _touch_ command. The we execute /challenge/run which provides us with the flag.
+```
+hacker@commands~touching-files:~$ touch /tmp/pwn
+hacker@commands~touching-files:~$ touch /tmp/college
+hacker@commands~touching-files:~$ /challenge/run
+Success! Here is your flag:
+pwn.college{8MBKOjBaReUo72eE-AIqW1s52AJ.dBzM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{8MBKOjBaReUo72eE-AIqW1s52AJ.dBzM4QDL3AjN1czW}
+
+# REMOVING FILES
+For this chal, we have to remove a file named _delete_me_ from the home directory using the _rm_ command. Then we have to run _/challenge/check_ which checks wheteher the file is deleted or not. If deleted, it returns the flag.
+```
+hacker@commands~removing-files:~$ touch delete_me
+hacker@commands~removing-files:~$ rm delete_me
+hacker@commands~removing-files:~$ /challenge/check
+Excellent removal. Here is your reward:
+pwn.college{cy_gza4DIQTPM2AD-FvLIj0Aigi.dZTOwUDL3AjN1czW}
+```
+> FLAG -> pwn.college{cy_gza4DIQTPM2AD-FvLIj0Aigi.dZTOwUDL3AjN1czW}
+
+# HIDDEN FILES
+For this chal, we have to run _ls / -a_ which lists the hidden files in the _root(/)_ directory. We seem to find this hidden file _.flag-995790357882_. We display its contents using _cat_ which provides us with the flag. 
+```
+hacker@commands~hidden-files:~$ ls / -a
+.   .dockerenv          bin   challenge  etc   lib    lib64   media  nix  proc  run   srv  tmp  var
+..  .flag-995790357882  boot  dev        home  lib32  libx32  mnt    opt  root  sbin  sys  usr
+hacker@commands~hidden-files:~$ cat /.flag-995790357882
+pwn.college{oxwIJlXbVerREgjfGRwENsiLfeq.dBTN4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{oxwIJlXbVerREgjfGRwENsiLfeq.dBTN4QDL3AjN1czW}
+
+# AN EPIC FILESYSTEM QUEST
