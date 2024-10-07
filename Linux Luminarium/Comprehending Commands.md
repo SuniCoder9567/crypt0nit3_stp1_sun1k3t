@@ -167,3 +167,75 @@ CONGRATULATIONS! Your perserverence has paid off, and you have found the flag!
 It is: pwn.college{QEOURkKbn9J9KP7ka1QRgGbj1d8.dljM4QDL3AjN1czW}
 ```
 >FLAG -> pwn.college{QEOURkKbn9J9KP7ka1QRgGbj1d8.dljM4QDL3AjN1czW}
+
+# MAKING DIRECTORIES
+For this chal, we had to make a new directory _/tmp/pwn_ using the _mkdir_ command. The we had to create a file named _college_ in it using the _touch_ command. Then we ran our favourite _challenge/run_ to get the flag.
+```
+hacker@commands~making-directories:~$ mkdir /tmp/pwn
+hacker@commands~making-directories:~$ cd /tmp/pwn
+hacker@commands~making-directories:/tmp/pwn$ touch college
+hacker@commands~making-directories:/tmp/pwn$ /challenge/run
+Success! Here is your flag:
+pwn.college{EMkM5QB_HiXfvocDHuxaxeC2yRV.dFzM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{EMkM5QB_HiXfvocDHuxaxeC2yRV.dFzM4QDL3AjN1czW}
+
+# FINDING FILES
+For this chal, we had to _cd_ to _root(/)_ and then apply _find -name "flag"_ which would list all the files and directories which contain any file named _flag_. It listed many files and directories and I tried to access only those which did not come with the error message _"Permission Denied"_. I found the flag in _./usr/share/doc/libavahi-client3/_ directory.
+```
+hacker@commands~finding-files:/$ find -name "flag"
+find: ‘./tmp/tmp.MiOQGWw5Zc’: Permission denied
+find: ‘./etc/ssl/private’: Permission denied
+./usr/local/lib/python3.8/dist-packages/pwnlib/flag
+./usr/local/share/radare2/5.9.5/flag
+./usr/share/doc/libavahi-client3/flag
+find: ‘./var/cache/apt/archives/partial’: Permission denied
+find: ‘./var/cache/ldconfig’: Permission denied
+find: ‘./var/cache/private’: Permission denied
+find: ‘./var/lib/apt/lists/partial’: Permission denied
+find: ‘./var/lib/mysql-files’: Permission denied
+find: ‘./var/lib/private’: Permission denied
+find: ‘./var/lib/mysql’: Permission denied
+find: ‘./var/lib/mysql-keyring’: Permission denied
+find: ‘./var/lib/php/sessions’: Permission denied
+find: ‘./var/log/private’: Permission denied
+find: ‘./var/log/apache2’: Permission denied
+find: ‘./var/log/mysql’: Permission denied
+find: ‘./run/mysqld’: Permission denied
+find: ‘./run/sudo’: Permission denied
+find: ‘./root’: Permission denied
+./opt/pwndbg/.venv/lib/python3.8/site-packages/pwnlib/flag
+./opt/radare2/libr/flag
+find: ‘./proc/tty/driver’: Permission denied
+find: ‘./proc/1/task/1/fd’: Permission denied
+find: ‘./proc/1/task/1/fdinfo’: Permission denied
+find: ‘./proc/1/task/1/ns’: Permission denied
+find: ‘./proc/1/fd’: Permission denied
+find: ‘./proc/1/map_files’: Permission denied
+find: ‘./proc/1/fdinfo’: Permission denied
+find: ‘./proc/1/ns’: Permission denied
+find: ‘./proc/7/task/7/fd’: Permission denied
+find: ‘./proc/7/task/7/fdinfo’: Permission denied
+find: ‘./proc/7/task/7/ns’: Permission denied
+find: ‘./proc/7/fd’: Permission denied
+find: ‘./proc/7/map_files’: Permission denied
+find: ‘./proc/7/fdinfo’: Permission denied
+find: ‘./proc/7/ns’: Permission denied
+FOUND FLAG AT :-
+hacker@commands~finding-files:/$ cd ./usr/share/doc/libavahi-client3/
+hacker@commands~finding-files:/usr/share/doc/libavahi-client3$ ls
+NEWS.gz  README  changelog.Debian.gz  copyright  flag
+hacker@commands~finding-files:/usr/share/doc/libavahi-client3$ cat flag
+pwn.college{Y8CX9jOkOSQ20Cm-XHeA5EXptcy.dJzM4QDL3AjN1czW}
+```
+> FLAG ->pwn.college{Y8CX9jOkOSQ20Cm-XHeA5EXptcy.dJzM4QDL3AjN1czW}
+
+# LINKING FILES
+In this chal, we had to create a symlink between two files, the given file _/flag_ and another _not-the-flag_ in the home directory. _not-the-flag_ file acts as a pointer to _/flag_. We use _/challenge/catflag_ to print the contents of _/flag_ via the symlink file _not-the-flag_ and thus, get the flag.
+```
+hacker@commands~linking-files:~$ ln -s /flag ~/not-the-flag
+hacker@commands~linking-files:~$ /challenge/catflag
+About to read out the /home/hacker/not-the-flag file!
+pwn.college{QhQpIzrd1Pshi7Zs7kOCx0NDAvO.dlTM1UDL3AjN1czW}
+```
+> FLAG -> pwn.college{QhQpIzrd1Pshi7Zs7kOCx0NDAvO.dlTM1UDL3AjN1czW}
