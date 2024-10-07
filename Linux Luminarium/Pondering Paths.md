@@ -38,4 +38,36 @@ pwn.college{Y6Gf83R59pUXZGo8nPoHuMgE8uw.dZDN1QDL3AjN1czW}
 ```
 > FLAG -> pwn.college{Y6Gf83R59pUXZGo8nPoHuMgE8uw.dZDN1QDL3AjN1czW}
 
-## To be continued...
+# POSITION ELSEWHERE  
+For this chal, again we need to pull up to the req directory _/usr/share/build-essential_  to execute the _/challenge/run_ program which provides us with the flag.
+```
+hacker@paths~position-elsewhere:~$ /challenge/run
+Incorrect...
+You are not currently in the /usr/share/build-essential directory.
+Please use the `cd` utility to change directory appropriately.
+hacker@paths~position-elsewhere:~$ cd /usr/share/build-essential
+hacker@paths~position-elsewhere:/usr/share/build-essential$ /challenge/run
+Correct!!!
+/challenge/run is an absolute path, invoked from the right directory!
+Here is your flag:
+pwn.college{8UrIcmfcI2FXGEigaEwcU9G63uR.ddDN1QDL3AjN1czW}
+```
+> FLAG -> pwn.college{8UrIcmfcI2FXGEigaEwcU9G63uR.ddDN1QDL3AjN1czW}
+
+# POSITION YET ELSEWHERE 
+This chain of chals repeatedly making us do the same task is just to make us learn how to change directories using the 'cd' command, we repeat the same task as the above two chals and get our flag.
+```
+hacker@paths~position-yet-elsewhere:~$ /challenge/run
+Incorrect...
+You are not currently in the /etc directory.
+Please use the `cd` utility to change directory appropriately.
+hacker@paths~position-yet-elsewhere:~$ cd /etc
+hacker@paths~position-yet-elsewhere:/etc$ /challenge/run
+Correct!!!
+/challenge/run is an absolute path, invoked from the right directory!
+Here is your flag:
+pwn.college{UJuF-IJN2f2CEbEzasxs4IWKq90.dhDN1QDL3AjN1czW}
+```
+> FLAG -> pwn.college{UJuF-IJN2f2CEbEzasxs4IWKq90.dhDN1QDL3AjN1czW}
+
+
