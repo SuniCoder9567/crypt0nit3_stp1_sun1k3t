@@ -33,5 +33,21 @@ pwn.college{gd9p45kMN2wns5L6OEpJwocWWya.dBjM5QDL3AjN1czW}
 ```
 > FLAG -> pwn.college{gd9p45kMN2wns5L6OEpJwocWWya.dBjM5QDL3AjN1czW}
 
+# GREPPING FOR A NEEDLE IN HAYSTACK
+For this chal, we use the _grep_ command to search for the flag within the given file _data.txt_. We pass _grep "pwn.college" /challenge/data.txt_ to the shell which provides us with the flag.
+```
+grep "pwn.college" /challenge/data.txt
+pwn.college{4AehqKeX8Lb-3f5oS6oLnb71HhK.ddTM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{4AehqKeX8Lb-3f5oS6oLnb71HhK.ddTM4QDL3AjN1czW}
 
-
+# LISTING FILES
+For this chal, we list the contents of challenge directory using _ls /challenge_ to find the executable file of _run_ renamed as _21851-renamed-run-27576_. We execute it and it provides us with the flag.
+```
+hacker@commands~listing-files:~$ ls /challenge
+21851-renamed-run-27576  DESCRIPTION.md
+hacker@commands~listing-files:~$ /challenge/21851-renamed-run-27576
+Yahaha, you found me! Here is your flag:
+pwn.college{0b8ByXanOROw5gA5qDjMDiNH6-O.dhjM4QDL3AjN1czW}
+```
+> FLAG-> pwn.college{0b8ByXanOROw5gA5qDjMDiNH6-O.dhjM4QDL3AjN1czW}
