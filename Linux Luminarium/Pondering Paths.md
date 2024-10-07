@@ -70,4 +70,47 @@ pwn.college{UJuF-IJN2f2CEbEzasxs4IWKq90.dhDN1QDL3AjN1czW}
 ```
 > FLAG -> pwn.college{UJuF-IJN2f2CEbEzasxs4IWKq90.dhDN1QDL3AjN1czW}
 
+# IMPLICIT RELATIVE PATHS, FROM /  
+For this chal, we had to change our _cwd_ to _root(/)_ and provide the relative path to the executable program i.e _challenge/run_, which provides us with the flag.
+```
+hacker@paths~implicit-relative-paths-from-:~$ cd /
+hacker@paths~implicit-relative-paths-from-:/$ challenge/run
+Correct!!!
+challenge/run is a relative path, invoked from the right directory!
+Here is your flag:
+pwn.college{wqZLkfpNV_oZyaIAlyG87hOR4xH.dlDN1QDL3AjN1czW}
+```
+> FLAG -> pwn.college{wqZLkfpNV_oZyaIAlyG87hOR4xH.dlDN1QDL3AjN1czW}
+
+# EXPLICIT RELATIVE PATHS, FROM /  
+For this chal, we had to change our _cwd_ to _root(/)_ and provide an explicit relative path to the executable program i.e _./challenge/run_, which provides us with the flag. Using the . doesn't affect the absolute path, it refers to the same _cwd_ which is _root(/)_ here.
+```
+hacker@paths~explicit-relative-paths-from-:~$ cd /
+hacker@paths~explicit-relative-paths-from-:/$ ./challenge/run
+Correct!!!
+./challenge/run is a relative path, invoked from the right directory!
+Here is your flag:
+pwn.college{YBz9POFW6CjVZ70KAUB9KpZAC1C.dBTN1QDL3AjN1czW}
+
+Alt :-
+hacker@paths~explicit-relative-paths-from-:/$ ./././challenge/run
+Correct!!!
+./././challenge/run is a relative path, invoked from the right directory!
+Here is your flag:
+pwn.college{YBz9POFW6CjVZ70KAUB9KpZAC1C.dBTN1QDL3AjN1czW}
+```
+> FLAG -> pwn.college{YBz9POFW6CjVZ70KAUB9KpZAC1C.dBTN1QDL3AjN1czW}
+
+# IMPLICIT RELATIVE PATH  
+For this chal, we had to change our _cwd_ to _/challenge_, then we have to execute the executable program _run_ via providing an explicit relative path for doing so i.e _./run_ as Linux explicitly avoids automatically looking in the current directory when you provide a "naked" path.
+```
+hacker@paths~implicit-relative-path:~$ cd /challenge
+hacker@paths~implicit-relative-path:/challenge$ ./run
+Correct!!!
+./run is a relative path, invoked from the right directory!
+Here is your flag:
+pwn.college{kFY-T728ooCnnxNEHEWp27yJxZP.dFTN1QDL3AjN1czW}
+hacker@paths~implicit-relative-path:/challenge$
+```
+> FLAG -> pwn.college{kFY-T728ooCnnxNEHEWp27yJxZP.dFTN1QDL3AjN1czW}
 
