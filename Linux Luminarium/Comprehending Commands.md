@@ -86,3 +86,84 @@ pwn.college{oxwIJlXbVerREgjfGRwENsiLfeq.dBTN4QDL3AjN1czW}
 > FLAG -> pwn.college{oxwIJlXbVerREgjfGRwENsiLfeq.dBTN4QDL3AjN1czW}
 
 # AN EPIC FILESYSTEM QUEST
+"I will test you patience with this one" ahh challenge fr. I need not explain a lot about it, using every command and its different usages we learnt till now were used to find files which contained clues after clues to finally get the flag after god knows how many steps. 
+```
+hacker@commands~an-epic-filesystem-quest:~$ cd /
+hacker@commands~an-epic-filesystem-quest:/$ ls
+MESSAGE  boot       dev  flag  lib    lib64   media  nix  proc  run   srv  tmp  var
+bin      challenge  etc  home  lib32  libx32  mnt    opt  root  sbin  sys  usr
+hacker@commands~an-epic-filesystem-quest:/$ cat MESSAGE
+Tubular find!
+The next clue is in: /opt/linux/linux-5.4/drivers/staging/comedi/drivers/ni_routing/ni_route_values
+
+The next clue is **delayed** --- it will not become readable until you enter the directory with 'cd'.
+hacker@commands~an-epic-filesystem-quest:/$ cd /opt/linux/linux-5.4/drivers/staging/comedi/drivers/ni_routing/ni_route_values
+hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/drivers/staging/comedi/drivers/ni_routing/ni_route_values$ ls
+CLUE  all.h  ni_660x.c  ni_eseries.c  ni_mseries.c
+hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/drivers/staging/comedi/drivers/ni_routing/ni_route_values$ cat CLUE
+Lucky listing!
+The next clue is in: /usr/lib/python3/dist-packages/jedi/third_party/typeshed/third_party/2and3/characteristic
+
+hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/drivers/staging/comedi/drivers/ni_routing/ni_route_values$ cd /usr/lib/python3/dist-packages/jedi/third_party/typeshed/third_party/2and3/characteristic
+hacker@commands~an-epic-filesystem-quest:/usr/lib/python3/dist-packages/jedi/third_party/typeshed/third_party/2and3/characteristic$ ls
+__init__.pyi
+hacker@commands~an-epic-filesystem-quest:/usr/lib/python3/dist-packages/jedi/third_party/typeshed/third_party/2and3/characteristic$ ls -a
+.  ..  .GIST  __init__.pyi
+hacker@commands~an-epic-filesystem-quest:/usr/lib/python3/dist-packages/jedi/third_party/typeshed/third_party/2and3/characteristic$ cat .GIST
+Lucky listing!
+The next clue is in: /usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold
+
+The next clue is **hidden** --- its filename starts with a '.' character. You'll need to look for it using special options to 'ls'.
+hacker@commands~an-epic-filesystem-quest:/usr/lib/python3/dist-packages/jedi/third_party/typeshed/third_party/2and3/characteristic$ cd /usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold
+hacker@commands~an-epic-filesystem-quest:/usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold$ ls -a
+.  ..  .TEASER  All.js  Main.js
+hacker@commands~an-epic-filesystem-quest:/usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold$ cat .TEASER
+Lucky listing!
+The next clue is in: /opt/busybox/busybox-1.33.2/include/config/unicode/bidi
+
+Watch out! The next clue is **trapped**. You'll need to read it out without 'cd'ing into the directory; otherwise, the clue will self destruct!
+hacker@commands~an-epic-filesystem-quest:/usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold$ ls /usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold -a
+.  ..  .TEASER  All.js  Main.js
+hacker@commands~an-epic-filesystem-quest:/usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold$ ls /opt/busybox/busybox-1.33.2/include/config/unicode/bidi -a
+.  ..  DISPATCH-TRAPPED  support.h
+hacker@commands~an-epic-filesystem-quest:/usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold$ cat /opt/busybox/busybox-1.33.2/include/config/unicode/bidi/DISPATCH-TRAPPED
+Lucky listing!
+The next clue is in: /usr/share/perl/5.30.0/Pod/Text
+hacker@commands~an-epic-filesystem-quest:/usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold$ cat /usr/share/perl/5.30.0/Pod/Text
+cat: /usr/share/perl/5.30.0/Pod/Text: Is a directory
+hacker@commands~an-epic-filesystem-quest:/usr/share/javascript/mathjax/jax/output/HTML-CSS/fonts/STIX/SizeOneSym/Bold$ cd /usr/share/perl/5.30.0/Pod/Text
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ ls
+BLUEPRINT  Color.pm  Overstrike.pm  Termcap.pm
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ cat BLUEPRINT
+Yahaha, you found me!
+The next clue is in: /usr/lib/python3.8/distutils/command
+
+Watch out! The next clue is **trapped**. You'll need to read it out without 'cd'ing into the directory; otherwise, the clue will self destruct!
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ ls /usr/lib/python3.8/distutils/command -a
+.              __init__.py  bdist_dumb.py  bdist_wininst.py  build_ext.py      check.py          config.py        install_egg_info.py  install_scripts.py  upload.py
+..             __pycache__  bdist_msi.py   build.py          build_py.py       clean.py          install.py       install_headers.py   register.py
+TRACE-TRAPPED  bdist.py     bdist_rpm.py   build_clib.py     build_scripts.py  command_template  install_data.py  install_lib.py       sdist.py
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ cat /usr/lib/python3.8/distutils/command/TRACE_TRAPPED
+cat: /usr/lib/python3.8/distutils/command/TRACE_TRAPPED: No such file or directory
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ /usr/lib/python3.8/distutils/command/TRACE_TRAPPED
+ssh-entrypoint: /usr/lib/python3.8/distutils/command/TRACE_TRAPPED: No such file or directory
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ cat /usr/lib/python3.8/distutils/command/TRACE-TRAPPED
+Great sleuthing!
+The next clue is in: /opt/angr-management
+
+The next clue is **hidden** --- its filename starts with a '.' character. You'll need to look for it using special options to 'ls'.
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ ls /opt/angr-management -a
+.  ..  .POINTER  _internal  angr-management
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ cat /opt/angr-management/.POINTER
+Lucky listing!
+The next clue is in: /opt/linux/linux-5.4/kernel/debug/kdb
+
+The next clue is **delayed** --- it will not become readable until you enter the directory with 'cd'.
+hacker@commands~an-epic-filesystem-quest:/usr/share/perl/5.30.0/Pod/Text$ cd /opt/linux/linux-5.4/kernel/debug/kdb
+hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/kernel/debug/kdb$ ls
+Makefile  TIP  kdb_bp.c  kdb_bt.c  kdb_cmds  kdb_debugger.c  kdb_io.c  kdb_keyboard.c  kdb_main.c  kdb_private.h  kdb_support.c
+hacker@commands~an-epic-filesystem-quest:/opt/linux/linux-5.4/kernel/debug/kdb$ cat TIP
+CONGRATULATIONS! Your perserverence has paid off, and you have found the flag!
+It is: pwn.college{QEOURkKbn9J9KP7ka1QRgGbj1d8.dljM4QDL3AjN1czW}
+```
+>FLAG -> pwn.college{QEOURkKbn9J9KP7ka1QRgGbj1d8.dljM4QDL3AjN1czW}
