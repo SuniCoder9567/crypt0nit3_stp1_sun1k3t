@@ -40,7 +40,7 @@ hacker@globbing~matching-paths-with-:~$
 > FLAG -> pwn.college{otQsP12AJCoQsWE95JumU8v-AH9.dRjM4QDL3AjN1czW}
 
 # MIXING GLOBS
-For this chal, we had to pull up to _/challenge/files_ using _cd_, then we had to write a glob which will match the files _"challenging", "educational", and "pwning"_. For this we have to pass the argument as _[cep]*_ , where c,e and p are the starting letters of the required files and _*_ wildcard, which the shell tries to replace with any file startinh with the specified letters. We pass _/challenge/files$ /challenge/run [cep]*_ to the shell which provides us with the flag.
+For this chal, we had to pull up to _/challenge/files_ using _cd_, then we had to write a glob argument which will match the files _"challenging", "educational", and "pwning"_. For this we have to pass the argument as _[cep]*_ , where c,e and p are the starting letters of the required files and _*_ wildcard, which the shell tries to replace with any file starting with the specified letters. We pass _/challenge/run [cep]*_ to the shell which provides us with the flag.
 ```
 hacker@globbing~mixing-globs:~$ cd /challenge/files
 hacker@globbing~mixing-globs:/challenge/files$ /challenge/run [cep]*
@@ -49,4 +49,14 @@ pwn.college{04WAKwATZ7BhyKaX8VUNqJKusab.dVjM4QDL3AjN1czW}
 ```
 > FLAG -> pwn.college{04WAKwATZ7BhyKaX8VUNqJKusab.dVjM4QDL3AjN1czW}
 
-# Exclusionary Globbing
+# EXCLUSIONARY GLOBBING
+For this chal, we had to _cd_ to _/challenge/files_, then we had to write a glob argument using _!_ or _^_ which negates to match the files whose description is given in an argument. In this chal, we have to execute all files that don't start with p, w, or n. For that, we pass _/challenge/run [!pwn]*_ to the shell, which will provide us with the flag.
+```
+hacker@globbing~exclusionary-globbing:/challenge/files$ /challenge/run [!pwn]*
+You got it! Here is your flag!
+pwn.college{cJeVnGG_1jcScgmp47XNhTPjCPF.dZjM4QDL3AjN1czW}
+hacker@globbing~exclusionary-globbing:/challenge/files$ /challenge/run [^pwn]*
+You got it! Here is your flag!
+pwn.college{cJeVnGG_1jcScgmp47XNhTPjCPF.dZjM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{cJeVnGG_1jcScgmp47XNhTPjCPF.dZjM4QDL3AjN1czW}
