@@ -94,7 +94,7 @@ Correct usage! Your flag: pwn.college{gweqtzwYaxv1sayXDrbQrJszI7O.dVTM4QDL3AjN1c
 > FLAG -> pwn.college{gweqtzwYaxv1sayXDrbQrJszI7O.dVTM4QDL3AjN1czW}
 
 # SEARCHING MANUALS
-For this chal, as specified by the chal, I ran _man man_ to know how to use man to search for a hidden manpage.
+For this chal, as specified by the chal, I ran _man man_ to know how to use man to search for a hidden manpage. From the series of arguments listed, I found out a unique one which goes like  _man -k printf. Search the short descriptions and manual page names for the keyword printf as regular expression. Print out any matches._ So basically it checks the description of files too which contain the matching characters. I ran _man -k challenge_ which gave me the file I was searcing for.
 ```
 hacker@man~searching-for-manuals:~$ man -k challenge
 bqyvtfrpvw (1)       - print the flag!
@@ -129,3 +129,87 @@ REPORTING BUGS
 SEE ALSO
        man(1) bash-builtins(7)
 ```
+So I used the argument specified in the aliased page and ran _/challenge/challenge --bqyvtf 036_, which provides us witht he flag.
+```
+hacker@man~searching-for-manuals:~$ /challenge/challenge --bqyvtf 036
+Correct usage! Your flag: pwn.college{INbEq0y3MGPvtCSZfM6r099pvwF.dZTM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{INbEq0y3MGPvtCSZfM6r099pvwF.dZTM4QDL3AjN1czW}
+
+# HELPFUL PROGRAMS
+So for this chal, all we have to do us run _--help_ or _-h_ on _/challenge/challenge_ to know how to run it, it display the following contents:-
+```
+hacker@man~helpful-programs:~$ /challenge/challenge --help
+usage: a challenge to make you ask for help [-h] [--fortune] [-v] [-g GIVE_THE_FLAG] [-p]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --fortune             read your fortune
+  -v, --version         get the version number
+  -g GIVE_THE_FLAG, --give-the-flag GIVE_THE_FLAG
+                        get the flag, if given the correct value
+  -p, --print-value     print the value that will cause the -g option to give you the flag
+```
+So I run _/challenge/challenge -p_ which gives me the secret value _491_ to get the flag.
+```
+hacker@man~helpful-programs:~$ /challenge/challenge -p
+The secret value is: 491
+```
+Then I run _challenge/challenge -g 491_, which provides us with the flag.
+```
+hacker@man~helpful-programs:~$ /challenge/challenge -g 491
+Correct usage! Your flag: pwn.college{g4F_z9t1SKJyhd7tRaOjcIQilDX.ddjM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{g4F_z9t1SKJyhd7tRaOjcIQilDX.ddjM4QDL3AjN1czW}
+
+# HELP FOR BUILTINS
+
+For this challenge, first I used the built in help command to get the whole list of builtin commands present in the shell
+```
+hacker@man~help-for-builtins:~$ help
+GNU bash, version 5.2.32(1)-release (x86_64-pc-linux-gnu)
+These shell commands are defined internally.  Type `help' to see this list.
+Type `help name' to find out more about the function `name'.
+Use `info bash' to find out more about the shell in general.
+Use `man -k' or `info' to find out more about commands not in this list.
+
+A star (*) next to a name means that the command is disabled.
+
+ job_spec [&]                                                history [-c] [-d offset] [n] or history -anrw [filename]>
+ (( expression ))                                            if COMMANDS; then COMMANDS; [ elif COMMANDS; then COMMAN>
+ . filename [arguments]                                      jobs [-lnprs] [jobspec ...] or jobs -x command [args]
+ :                                                           kill [-s sigspec | -n signum | -sigspec] pid | jobspec .>
+ [ arg... ]                                                  let arg [arg ...]
+ [[ expression ]]                                            local [option] name[=value] ...
+ alias [-p] [name[=value] ... ]                              logout [n]
+ bg [job_spec ...]                                           mapfile [-d delim] [-n count] [-O origin] [-s count] [-t>
+ bind [-lpsvPSVX] [-m keymap] [-f filename] [-q name] [-u >  popd [-n] [+N | -N]
+ break [n]                                                   printf [-v var] format [arguments]
+ builtin [shell-builtin [arg ...]]                           pushd [-n] [+N | -N | dir]
+ caller [expr]                                               pwd [-LP]
+ case WORD in [PATTERN [| PATTERN]...) COMMANDS ;;]... esa>  read [-ers] [-a array] [-d delim] [-i text] [-n nchars] >
+ cd [-L|[-P [-e]] [-@]] [dir]                                readarray [-d delim] [-n count] [-O origin] [-s count] [>
+ challenge [--fortune] [--version] [--secret SECRET]         readonly [-aAf] [name[=value] ...] or readonly -p
+ etc.
+```
+There I noticed the builtin command challenge. So I ran _help challenge_ which gave me this.
+```
+hacker@man~help-for-builtins:~$ help challenge
+challenge: challenge [--fortune] [--version] [--secret SECRET]
+    This builtin command will read you the flag, given the right arguments!
+
+    Options:
+      --fortune         display a fortune
+      --version         display the version
+      --secret VALUE    prints the flag, if VALUE is correct
+
+    You must be sure to provide the right value to --secret. That value
+    is "I5uPhdm4"
+```
+So considering the secret value _I5uPhdm4_, I ran it as an argument with _challenge_ as _challenge --secret I5uPhdm4_, which provides us with the flag.
+```
+hacker@man~help-for-builtins:~$ challenge --secret I5uPhdm4
+Correct! Here is your flag!
+pwn.college{I5uPhdm4SHZd6T8FToYFoRRl41F.dRTM5QDL3AjN1czW}
+```
+> FLAG -> pwn.college{I5uPhdm4SHZd6T8FToYFoRRl41F.dRTM5QDL3AjN1czW}
