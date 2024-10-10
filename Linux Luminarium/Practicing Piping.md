@@ -162,7 +162,7 @@ pwn.college{cX8C96Hw8I9f08gzKJzHh90la-r.dlTM4QDL3AjN1czW}
 > FLAG -> pwn.college{cX8C96Hw8I9f08gzKJzHh90la-r.dlTM4QDL3AjN1czW}
 
 # GREPPING ERRORS
-For this chal, as specified in the challenge itself, we redirect the _stderr_ of _/challenge/run_ to _stdout_ using _2>&1_ and then pipe it to grep along with the argument as _pwn.college_ to get our flag.
+For this chal, as specified in the challenge itself, we redirect the _stderr_ of _/challenge/run_ to _stdout_ using _2>&1_ and then pipe it to grep along with the argument as _pwn.college_ to get our flag. It is to be noted that the _stdout_ and _stderr_ get mixed here. 
 ```
 hacker@piping~grepping-errors:~$ /challenge/run 2>&1 | grep pwn.college
 [INFO] WELCOME! This challenge makes the following asks of you:
