@@ -88,3 +88,141 @@ hacker@piping~redirecting-errors:~$ cat myflag
 [FLAG] pwn.college{QnVsOplMgKR06gE5C-bLifGCDeX.ddjN1QDL3AjN1czW}
 ```
 > FLAG -> pwn.college{QnVsOplMgKR06gE5C-bLifGCDeX.ddjN1QDL3AjN1czW}
+
+# REDIRECTING INPUTS
+For this chal, we have to store _COLLEGE_ in the _PWN_ file. For that, we do simple _stdout_ direction.
+```
+hacker@piping~redirecting-input:~$ echo COLLEGE > PWN
+
+```
+After that, I redirect the input of _PWN_ file to _/challenge/run_ which provides us with the flag.
+```
+hacker@piping~redirecting-input:~$ /challenge/run < PWN
+Reading from standard input...
+Correct! You have redirected the PWN file into my standard input, and I read
+the value 'COLLEGE' out of it!
+Here is your flag:
+pwn.college{URo5GsBRoVbCh9wOavD3yVMgAIV.dBzN1QDL3AjN1czW}
+```
+> FLAG -> pwn.college{URo5GsBRoVbCh9wOavD3yVMgAIV.dBzN1QDL3AjN1czW}
+
+# GREPPING STORED RESULTS
+In this chal, we have to redirect the contents of _/challenge/run_ to _/tmp/data.txt_ using _>_.
+```
+hacker@piping~grepping-stored-results:~$ /challenge/run > /tmp/data.txt
+[INFO] WELCOME! This challenge makes the following asks of you:
+[INFO] - the challenge will check that output is redirected to a specific file path : /tmp/data.txt
+[INFO] - the challenge will output a reward file if all the tests pass : /challenge/.data.txt
+
+[HYPE] ONWARDS TO GREATNESS!
+
+[INFO] This challenge will perform a bunch of checks.
+[INFO] If you pass these checks, you will receive the /challenge/.data.txt file.
+
+[TEST] You should have redirected my stdout to a file called /tmp/data.txt. Checking...
+
+[HINT] File descriptors are inherited from the parent, unless the FD_CLOEXEC is set by the parent on the file descriptor.
+[HINT] For security reasons, some programs, such as python, do this by default in certain cases. Be careful if you are
+[HINT] creating and trying to pass in FDs in python.
+
+[PASS] The file at the other end of my stdout looks okay!
+[PASS] Success! You have satisfied all execution requirements.
+```
+After doing so we run the _grep_ command with to be searched as _pwn.college_ and file as _/tmp/data.txt_ which provides us with out flag.
+```
+hacker@piping~grepping-stored-results:~$ grep pwn.college /tmp/data.txt
+pwn.college{ognOtFam8RM_4An14mgzuRwxq1A.dhTM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{ognOtFam8RM_4An14mgzuRwxq1A.dhTM4QDL3AjN1czW}
+
+# GREPPING LIVE OUTPUT
+For this chal, we pipe the output of _/challenge/run_ using **|** to _grep pwn.college_. This avoids the need for us to redirect the components of the executable file _/challenge/run_ to another file and then search for it. Piping makes the job much easier. Executing _/challenge/run | grep pwn.college_ provides us with the flag.
+```
+hacker@piping~grepping-live-output:~$ /challenge/run | grep pwn.college
+[INFO] WELCOME! This challenge makes the following asks of you:
+[INFO] - the challenge checks for a specific process at the other end of stdout : grep
+[INFO] - the challenge will output a reward file if all the tests pass : /challenge/.data.txt
+
+[HYPE] ONWARDS TO GREATNESS!
+
+[INFO] This challenge will perform a bunch of checks.
+[INFO] If you pass these checks, you will receive the /challenge/.data.txt file.
+
+[TEST] You should have redirected my stdout to another process. Checking...
+[TEST] Performing checks on that process!
+
+[INFO] The process' executable is /nix/store/xpq4yhadyhazkcsggmqd7rsgvxb3kjy4-gnugrep-3.11/bin/grep.
+[INFO] This might be different than expected because of symbolic links (for example, from /usr/bin/python to /usr/bin/python3 to /usr/bin/python3.8).
+[INFO] To pass the checks, the executable must be grep.
+
+[PASS] You have passed the checks on the process on the other end of my stdout!
+[PASS] Success! You have satisfied all execution requirements.
+pwn.college{cX8C96Hw8I9f08gzKJzHh90la-r.dlTM4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{cX8C96Hw8I9f08gzKJzHh90la-r.dlTM4QDL3AjN1czW}
+
+# GREPPING ERRORS
+For this chal, as specified in the challenge itself, we redirect the _stderr_ of _/challenge/run_ to _stdout_ using _2>&1_ and then pipe it to grep along with the argument as _pwn.college_ to get our flag.
+```
+hacker@piping~grepping-errors:~$ /challenge/run 2>&1 | grep pwn.college
+[INFO] WELCOME! This challenge makes the following asks of you:
+[INFO] - the challenge checks for a specific process at the other end of stderr : grep
+[INFO] - the challenge will output a reward file if all the tests pass : /challenge/.data.txt
+
+[HYPE] ONWARDS TO GREATNESS!
+
+[INFO] This challenge will perform a bunch of checks.
+[INFO] If you pass these checks, you will receive the /challenge/.data.txt file.
+
+[TEST] You should have redirected my stderr to another process. Checking...
+[TEST] Performing checks on that process!
+
+[INFO] The process' executable is /nix/store/xpq4yhadyhazkcsggmqd7rsgvxb3kjy4-gnugrep-3.11/bin/grep.
+[INFO] This might be different than expected because of symbolic links (for example, from /usr/bin/python to /usr/bin/python3 to /usr/bin/python3.8).
+[INFO] To pass the checks, the executable must be grep.
+
+[PASS] You have passed the checks on the process on the other end of my stderr!
+[PASS] Success! You have satisfied all execution requirements.
+pwn.college{0zrAXUaQ0sqaYVjO-uel7VwMexo.dVDM5QDL3AjN1czW}
+```
+> FLAG -> pwn.college{0zrAXUaQ0sqaYVjO-uel7VwMexo.dVDM5QDL3AjN1czW}
+
+# DUPLICATING PIPED DATA WITH TEE
+For this cha, first we try to intercept what is the necessary secret key to pipe the contents of _challenge/pwn_ to _challenge/college_ using _tee_
+```
+hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn | tee whatsthekey | /challenge/college
+Processing...
+The input to 'college' does not contain the correct secret code! This code
+should be provided by the 'pwn' command. HINT: use 'tee' to intercept the
+output of 'pwn' and figure out what the code needs to be.
+```
+We proceed to read _whatsthekey_ using cat and get this
+```
+hacker@piping~duplicating-piped-data-with-tee:~$ cat whatsthekey
+Usage: /challenge/pwn --secret [SECRET_ARG]
+
+SECRET_ARG should be "YJ_hREr8"
+```
+Voila, we got our secret key! Now we use the key as intented and pass it as a argument to _/challenge/pwn_ and thus get our flag.
+```
+hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn --secret YJ_hREr8 | /challenge/college
+Processing...
+Correct! Passing secret value to /challenge/college...
+Great job! Here is your flag:
+pwn.college{YJ_hREr8lmnDl0vVz0G7tyhDtjh.dFjM5QDL3AjN1czW}
+```
+> FLAG -> pwn.college{YJ_hREr8lmnDl0vVz0G7tyhDtjh.dFjM5QDL3AjN1czW}
+
+# WRITING TO MULTIPLE PROGRAMS
+
+```
+
+```
+> FLAG ->
+
+# SPLIT-PIPING STDERR AND STDOUT
+
+```
+
+```
+> FLAG -> 
