@@ -188,7 +188,7 @@ pwn.college{0zrAXUaQ0sqaYVjO-uel7VwMexo.dVDM5QDL3AjN1czW}
 > FLAG -> pwn.college{0zrAXUaQ0sqaYVjO-uel7VwMexo.dVDM5QDL3AjN1czW}
 
 # DUPLICATING PIPED DATA WITH TEE
-For this cha, first we try to intercept what is the necessary secret key to pipe the contents of _challenge/pwn_ to _challenge/college_ using _tee_
+For this chal, first we try to intercept what is the necessary secret key to pipe the contents of _challenge/pwn_ to _challenge/college_ using _tee_
 ```
 hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn | tee whatsthekey | /challenge/college
 Processing...
@@ -214,7 +214,7 @@ pwn.college{YJ_hREr8lmnDl0vVz0G7tyhDtjh.dFjM5QDL3AjN1czW}
 > FLAG -> pwn.college{YJ_hREr8lmnDl0vVz0G7tyhDtjh.dFjM5QDL3AjN1czW}
 
 # WRITING TO MULTIPLE PROGRAMS
-For this chal, we have duplicate the ouput of _/challenge/hack_ as inputs to _challenge/the_ and _challenge/planet_. So, using _>()_ and _tee_, we can pass the _/challenge/the_ anf _/challenge/planet_ files as arguments and the command will write to the folowwing files' _stdin_. Doing so provides us with the flag.
+For this chal, we have duplicate the ouput of _/challenge/hack_ as inputs to _challenge/the_ and _challenge/planet_. So, using _>()_ and _tee_, we can pass the _/challenge/the_ and _/challenge/planet_ files as arguments and the command will write to the following files' _stdin_. Doing so provides us with the flag.
 ```
 hacker@piping~writing-to-multiple-programs:~$ /challenge/hack | tee >( /challenge/the ) >( /challenge/planet )
 This secret data must directly and simultaneously make it to /challenge/the and
