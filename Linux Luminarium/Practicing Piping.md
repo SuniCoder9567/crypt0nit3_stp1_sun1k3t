@@ -214,15 +214,25 @@ pwn.college{YJ_hREr8lmnDl0vVz0G7tyhDtjh.dFjM5QDL3AjN1czW}
 > FLAG -> pwn.college{YJ_hREr8lmnDl0vVz0G7tyhDtjh.dFjM5QDL3AjN1czW}
 
 # WRITING TO MULTIPLE PROGRAMS
-
+For this chal, we have duplicate the ouput of _/challenge/hack_ as inputs to _challenge/the_ and _challenge/planet_. So, using _>()_ and _tee_, we can pass the _/challenge/the_ anf _/challenge/planet_ files as arguments and the command will write to the folowwing files' _stdin_. Doing so provides us with the flag.
 ```
-
+hacker@piping~writing-to-multiple-programs:~$ /challenge/hack | tee >( /challenge/the ) >( /challenge/planet )
+This secret data must directly and simultaneously make it to /challenge/the and
+/challenge/planet. Don't try to copy-paste it; it changes too fast.
+21072108501307031145
+Congratulations, you have duplicated data into the input of two programs! Here
+is your flag:
+pwn.college{kByLcnoZxJixgbt1zkGwXktivsm.dBDO0UDL3AjN1czW}
+hacker@piping~writing-to-multiple-programs:~$
 ```
-> FLAG ->
+> FLAG -> pwn.college{kByLcnoZxJixgbt1zkGwXktivsm.dBDO0UDL3AjN1czW}
 
 # SPLIT-PIPING STDERR AND STDOUT
-
+For this chal, to avoid mixing of _stderr_ and _stdout_, we run _/challenge/hack > >( /challenge/planet ) 2> >( /challenge/the )_ which directs the _stdout_ of _/challenge/hack_ to the _stdin_ of _/challenge/planet_ which read and then redirected as the _stderr_ to the _stdin_ of _/challenge/the_, which provides us with the flag.
 ```
-
+hacker@piping~split-piping-stderr-and-stdout:~$ /challenge/hack > >( /challenge/planet ) 2> >( /challenge/the )
+Congratulations, you have learned a redirection technique that even experts
+struggle with! Here is your flag:
+pwn.college{IO_aF_1E9kNvc_e7TL3DS27HD5d.dFDNwYDL3AjN1czW}
 ```
-> FLAG -> 
+> FLAG -> pwn.college{IO_aF_1E9kNvc_e7TL3DS27HD5d.dFDNwYDL3AjN1czW}
