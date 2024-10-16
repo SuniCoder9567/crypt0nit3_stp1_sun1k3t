@@ -125,3 +125,59 @@ Yay, I found another version of me running in the background! Here is the flag:
 pwn.college{oRONVHJWCxtXWCMGj-tXYUto5Ho.ddDN4QDL3AjN1czW}
 ```
 > FLAG -> pwn.college{oRONVHJWCxtXWCMGj-tXYUto5Ho.ddDN4QDL3AjN1czW}
+
+# FOREGROUNDING PROCESSES
+For this chal, first we run _/challenge/run_, and then suspend it. After that, we run it in the background using _bg_ command and then we bring it to the foreground using the _fg_ command. Doing this provides us with the flag.
+```
+hacker@processes~foregrounding-processes:~$ /challenge/run
+To pass this level, you need to suspend me, resume the suspended process in the
+background, and *then* foreground it without re-suspending it! You can
+background me with Ctrl-Z (and resume me in the background with 'bg') or, if
+you're not ready to do that for whatever reason, just hit Enter and I'll exit!
+^Z
+[1]+  Stopped                 /challenge/run
+hacker@processes~foregrounding-processes:~$ bg /challenge/run
+[1]+ /challenge/run &
+
+
+
+Yay, I'm now running the background! Because of that, this text will probably
+overlap weirdly with the shell prompt. Don't panic; just hit Enter a few times
+to scroll this text out. After that, resume me into the foreground with 'fg';
+I'll wait.
+hacker@processes~foregrounding-processes:~$ fg /challenge/run
+/challenge/run
+YES! Great job! I'm now running in the foreground. Hit Enter for your flag!
+
+pwn.college{8v0j79Q9lrPaIG14ip8pgKwSJF5.dhDN4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{8v0j79Q9lrPaIG14ip8pgKwSJF5.dhDN4QDL3AjN1czW}
+
+# STARTING BACKGROUND PROCESSES
+For this chal, all we had to do was start _/challenge/run_ as a background process by appending the command with an _&_ character which provides us with the flag.
+```
+hacker@processes~starting-backgrounded-processes:~$ /challenge/run &
+[1] 103
+
+
+
+hacker@processes~starting-backgrounded-processes:~$ Yay, you started me in the background! Because of that, this text will probably
+overlap weirdly with the shell prompt, but you're used to that by now...
+
+Anyways! Here is your flag!
+pwn.college{sOBZ5sthLvjLeVyPEV7qyx9Rc11.dlDN4QDL3AjN1czW}
+```
+> FLAG -> pwn.college{sOBZ5sthLvjLeVyPEV7qyx9Rc11.dlDN4QDL3AjN1czW}
+
+# PROCESS EXIT CODES
+For this chal, we have to get the exit code returned by running _/challenge/get-code_ by providing _echo $?_. It returns _101_. We pass the returned exit code i.e _101_ as an argument to _/challenge/submit-code_, whihc provides us with the flag.
+```
+hacker@processes~process-exit-codes:~$ /challenge/get-code
+Exiting with an error code!
+hacker@processes~process-exit-codes:~$ echo $?
+101
+hacker@processes~process-exit-codes:~$ /challenge/submit-code 101
+CORRECT! Here is your flag:
+pwn.college{kskwBTPLUhoRPUHqXpq9q9jMm4V.dljN4UDL3AjN1czW}
+```
+> FLAG -> pwn.college{kskwBTPLUhoRPUHqXpq9q9jMm4V.dljN4UDL3AjN1czW}
