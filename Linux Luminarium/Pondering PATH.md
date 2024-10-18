@@ -22,4 +22,17 @@ pwn.college{sscy_0xDu-OvXz7boyGMI9LYv-7.dVzNyUDL3AjN1czW}
 > FLAG -> pwn.college{sscy_0xDu-OvXz7boyGMI9LYv-7.dVzNyUDL3AjN1czW}
 
 # ADDING COMMANDS
+For this chal, we need to first create and executable script named `win` in which we need to add the command `cat /flag`. Then we have to make it executable using `chmod +x`. After that, we need to add the path of the `win` script, in this case `~`, to the existing path variables seperated by `:`. Then we execute `/challenge/run`, whcih provides us with the flag.
+```
+hacker@path~adding-commands:~$ nano win
+hacker@path~adding-commands:~$ echo $PATH
+/run/challenge/bin:/run/workspace/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+hacker@path~adding-commands:~$ PATH="/run/challenge/bin:/run/workspace/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~"
+hacker@path~adding-commands:~$ /challenge/run
+Invoking 'win'....
+pwn.college{4uw_y8cSQfjiJ_XqU5B6qD1KLTV.dZzNyUDL3AjN1czW}
+```
+> FLAG -> pwn.college{4uw_y8cSQfjiJ_XqU5B6qD1KLTV.dZzNyUDL3AjN1czW}
+
+# HIJACKING COMMANDS
 
