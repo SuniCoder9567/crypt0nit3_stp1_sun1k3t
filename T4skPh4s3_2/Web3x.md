@@ -37,3 +37,7 @@ So I ran the provided _.html_ files and guess what, the robots showed up.
 > FLAG -> picoCTF{ca1cu1at1ng_Mach1n3s_8028f}
 
 # SQL Direct
+Nothing much, just a bunch of sql queries to seize the day!  
+![Screenshot 2024-11-01 050526](https://github.com/user-attachments/assets/09baa2e0-2ef0-4595-8940-1f3c825f45e8)
+
+> FLAG -> picoCTF{L3arN_S0m3_5qL_t0d4Y_21c94904}
