@@ -7,7 +7,8 @@ For this chal, all we gotta do is pull up to the webbsite, inspect the HTML sour
 > FLAG -> picoCTF{1n5p3t0r_0f_h7ml_8113f7e2}
 
 # Intro to burp
-Well I have had some experience with burpsuite from past chals. For this one though, we needed to click on register after proiding some random bs details and intercept the incoming request for 2FA. I simply changed the request method form `GET` to `POST` and voila the flag was in front of me.
+Well I have had some experience with burpsuite from past chals. For this one though, we needed to click on register after proiding some random bs details and intercept the incoming request for 2FA. I simply changed the request method form `GET` to `POST` and voila the flag was in front of me.  
+
 
 ![Screenshot 2024-11-01 042710](https://github.com/user-attachments/assets/afd0cfb3-507b-4436-9ccd-9251bdd58807)
 
@@ -16,16 +17,19 @@ Well I have had some experience with burpsuite from past chals. For this one tho
 
 
 # dont-use-client-side
-Like the chal says, don't follow the client side man. All I did for this chal was inspecting the website and following a series of substrings given in order. These substrings were just derived from the original flag.
+Like the chal says, don't follow the client side man. All I did for this chal was inspecting the website and following a series of substrings given in order. These substrings were just derived from the original flag.  
+
 ![Screenshot 2024-11-01 035730](https://github.com/user-attachments/assets/73617819-0694-441b-88fc-8fabd478e619)  
 So I manually mapped the substrings in order and formed the og flag.
 
 > FLAG -> picoCTF{no_clients_plz_7723ce}
 
 # Where are the robots
-Well I have past exp with chals involving robots.txt. All I did was add /robots.txt to the URL directory which took me to a where it mentioned which file was disallowed.
+Well I have past exp with chals involving robots.txt. All I did was add /robots.txt to the URL directory which took me to a where it mentioned which file was disallowed.  
+
 ![Screenshot 2024-11-01 040257](https://github.com/user-attachments/assets/553de74d-5575-4e8f-989c-5e30704f272f)
-So I ran the provided _.html_ files and guess what, the robots showed up.
+So I ran the provided _.html_ files and guess what, the robots showed up.  
+
 
 ![Screenshot 2024-11-01 040317](https://github.com/user-attachments/assets/6fe948ea-ccb6-404f-bf62-efdd3385b994)
 
