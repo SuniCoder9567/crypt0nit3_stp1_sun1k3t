@@ -75,3 +75,19 @@ This was kinda obv, I changed the accept language header to `sv-SE`, which is fo
 
 
 > FLAG -> picoCTF{http_h34d3rs_v3ry_c0Ol_much_w0w_b22d773c}
+# Power Cookies
+For this chal, all we had to do was inpect the website -> Go to Applications -> Get the Cookies -> A particulat cookie named `isAdmin` will have the value set as 0. We just have to set that as `isAdmin=1` and refresh the page, and voila we get the flag.  ![Screenshot 2024-11-01 161405](https://github.com/user-attachments/assets/fe75ca21-9c0d-446e-b8e2-667770e632d0)  
+> FLAG -> picoCTF{gr4d3_A_c00k13_65fd1e1a}
+
+
+# Most Cookies
+I gotta admit that I underestimated this one. After doing thorough research on the internet and searching for tools by _dorking_ my ol' friend google, I found smth interesting which just may help me get the flag. _https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/flask_. So I created a wordlist from the given harcoded set of cookies and ran the command `C:\Users\sunik>flask-unsign --wordlist C:\Users\sunik\OneDrive\Documents\Pictures\flagdedo.txt --unsign --cookie "eyJ2ZXJ5X2F1dGgiOiJibGFuayJ9.ZyTElw.H4uWq9gByrUrgshaHuqtamd6Gog" --no-literal-eval --threads 16` which gave me the secret key as `b'fortune'`.  
+![Screenshot 2024-11-01 181531](https://github.com/user-attachments/assets/1be8c1c0-960e-488b-b818-8389b94db8ea)  
+After this, I used another command to generate a new cookie which contains the necessary request i.e `{"very_auth":"admin}` using `C:\Users\sunik>flask-unsign --sign --cookie {'very_auth':'admin'} --secret 'fortune'` which gave me the new cookie as `eyJ2ZXJ5X2F1dGgiOiJhZG1pbiJ9.ZyTOmQ.KBIkUcdk2bRKSjPzJ1H3_aRCwJM`.  
+Then, I simply submitted this cookie and damn g, the flag was right in front of us!  
+![Screenshot 2024-11-01 183101](https://github.com/user-attachments/assets/5a35f853-4ce7-468c-b1d3-fab754d3fc2f)  
+
+
+
+
+> FLAG -> picoCTF{pwn_4ll_th3_cook1E5_25bdb6f6}
