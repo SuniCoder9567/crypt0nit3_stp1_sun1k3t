@@ -41,7 +41,12 @@ Nothing much, just a bunch of sql queries to seize the day!
 ![Screenshot 2024-11-01 050526](https://github.com/user-attachments/assets/09baa2e0-2ef0-4595-8940-1f3c825f45e8)
 
 > FLAG -> picoCTF{L3arN_S0m3_5qL_t0d4Y_21c94904}
+# Some Assembly Required 1
+I am really not sure if I did this chal the way it was intended to do💀. I inspected the _.js_ file given with the chal and in the list of strings, there was a rather odd strong which seemed like a path to me. So, I ran the path in the URL and a file got downloaded on my PC. At the end of the file, there was the flag present there. DAMN!  
+![Screenshot 2024-11-01 185558](https://github.com/user-attachments/assets/82afafe3-67d1-4315-a146-a740aa1aca57)
 
+
+> FLAG -> picoCTF{a8bae10f4d9544110222c2d639dc6de6}  
 # Who are you?
 
 For this chal, we gotta go deep into step by step puzzle solving. 
