@@ -5,7 +5,7 @@ For this chal, all we gotta do is pull up to the webbsite, inspect the HTML sour
 > ![Screenshot 2024-11-01 025551](https://github.com/user-attachments/assets/0349a19c-10c6-42a3-ba1f-86e94a1bc168)
 
 > FLAG -> picoCTF{1n5p3t0r_0f_h7ml_8113f7e2}
-
+<br><br>
 # Intro to burp
 Well I have had some experience with burpsuite from past chals. For this one though, we needed to click on register after proiding some random bs details and intercept the incoming request for 2FA. I simply changed the request method form `GET` to `POST` and voila the flag was in front of me.  
 
