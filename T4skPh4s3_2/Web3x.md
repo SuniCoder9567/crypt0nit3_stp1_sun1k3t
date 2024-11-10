@@ -106,3 +106,14 @@ Then, I simply submitted this cookie and damn g, the flag was right in front of 
 
 
 > FLAG -> picoCTF{pwn_4ll_th3_cook1E5_25bdb6f6}
+
+# More SQLi  
+As the name suggests, we gotta fill that syringe with our knowledge of SQL and inject it into the web server. So the first hurdle was to bypass the login page. So, what I did to overcome the hurdle was to use the concept of `-- -`, whoch basically comments out the rest of the sql query. What I did for it was to pass the password as `' or 1=1 -- -` which brings us to the logged in page.  
+
+![Screenshot 2024-11-10 144328](https://github.com/user-attachments/assets/9fd8a051-ade0-4205-97e4-53b2c6e6a2f6)  
+So, how do I find the flag from here. The first thing I did, was I pulled up BurpSuite _(GOD OF WEBEX)_, just to test a few things. As usual, I turned on intercept and forwarded another login request using the same queries and voila, the response contained the flag! I thought I would have to do much more lmao.
+![Screenshot 2024-11-10 144902](https://github.com/user-attachments/assets/f1b1e39f-bdc4-43b2-81bd-9ce2d174dc95)  
+
+
+> FLAG -> picoCTF{G3tting_5QL_1nJ3c7I0N_l1k3_y0u_sh0ulD_c8ee9477}
+
