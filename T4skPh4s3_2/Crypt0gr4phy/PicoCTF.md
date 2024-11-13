@@ -59,7 +59,7 @@ while not flag.endswith("}"):
         break
 
 ```
-So what this script does basically is, that it starts with a known part of the flag i.e `picoCTF{` and iteratively guesses the remaining characters. It tries to send character by character to the server and receives an encrypted result which it tries to match with the given flag to find a pattern. If there is a match, it adds the character to the `flag` plaintext. This process continues till we get the whole flag.  
+So what this script does basically is, that it starts with a known part of the flag i.e `picoCTF{` and iteratively guesses the remaining characters. It tries to send character by character to the server and receives an encrypted result which it tries to match with the given encrypted flag to find a pattern. If there is a match, it adds the character to the `flag` plaintext. This process continues till we get the whole flag.  
 
 
 ![Screenshot 2024-11-14 013706](https://github.com/user-attachments/assets/355133f7-3284-49de-8b90-4fb519f03e2b)
