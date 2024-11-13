@@ -37,6 +37,6 @@ There was another function `move_player()` which contained like two more keybind
   return;
 ```
 Taking a careful look into the code, there seems to be no `Out of Bounds` checking in the `move_player()` function.  
-Now, coming back to the `main` function, analyzing it suggests that the value of `local_aa4` must be `NOT NULL` in order to win the challenge. Currently it is `NULL`. To make it `NOT NULL`, we meed to change the position of the player to `(0,-4)`, as `local_aa4` precedes `local_aa0` as per the `init_player()` function. Bringing it to that position, is going to point to `local_aa4` and put the calue of `player_title` into it thus making it `NOT NULL`. Affter that, we type in `p` and voila, we get our flag!
+Now, coming back to the `main` function, analyzing it suggests that the value of `local_aa4` must be `NOT NULL` in order to win the challenge. Currently it is `NULL`. To make it `NOT NULL`, we need to change the position of the player to `(0,-4)`, as `local_aa4` precedes `local_aa0` in the array as per the `init_player()` function. Bringing it to that position, is going to point to `local_aa4` and put the value of `player_title` into it thus making it `NOT NULL`. Affter that, we type in `p` and voila, we get our flag!
 
 > FLAG -> picoCTF{gamer_m0d3_enabled_8985ce0e}
