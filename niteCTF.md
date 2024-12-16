@@ -13,4 +13,10 @@ Taking a look at the function `fool_alice(secret)`, we can see that we have to t
   Then we enter the vault key into `crack_the_vault()`, and boom there is our flag right in front of us.  
 
 > FLAG -> nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}
+
+
+# FREAKADA 3301  
+_Higlight: FREAKY BACKSHOTS CLIFF👅_  
+
+ 
   
