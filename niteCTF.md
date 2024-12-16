@@ -1,5 +1,5 @@
 # LE CASA DE PAPEL  
-##Solved by: LordSen1908
+## Solved by: LordSen1908
 ## CHALLENGE DESCRIPTION  
 _Word on the street is Bob's about to make a big withdrawal. Too bad you're the one holding his ID. Can you charm Alice into making the transfer before she catches on?_  
 ## SOLUTION
@@ -17,7 +17,7 @@ Taking a look at the function `fool_alice(secret)`, we can see that we have to t
 
 
 # FREAKADA 3301  
-##Solved by: Glaizz & LordSen1908
+## Solved by: Glaizz & LordSen1908
 _Higlight: FREAKY BACKSHOTS CLIFF👅_  
 A challenge designed for Manipal Students! Kudos to the creators, we had a lot of fun solving this.  
 
