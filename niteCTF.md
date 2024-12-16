@@ -104,7 +104,7 @@ For the answers they hold may soon be mine.
 38:1:1
 11:6:3
 ```
-This was obvious to both of us that we had to map the `line:word:letter`, from the poem from the given sequence. Doing so gave us a discord server join link.  
+This was obvious to both of us that we had to map the `line:word:letter`, from the poem using the given sequence. Doing so gave us a discord server join link.  
 `discord.gg/AHj7R2Qd`  
 We hopped into the server and saw a suspicious VC which promised us the flag(obv it was a trap).  
 See we knew, it was gonna be a trap, but we are _CHILL GUYS_, so we joined it.  
@@ -182,7 +182,7 @@ Obviously x and y where the number represeting image size of the _freakada_ imag
 #                 congrats.
 `13.34508015959565, 74.79629600750295`
 ```
-`13.34508015959565, 74.79629600750295` - these coordinated led us to the infamously famous `FREAKY BACKSHOTS CLIFF`. The reviews had images with a QR code which led us to a voice message.  
+`13.34508015959565, 74.79629600750295` - these coordinates led us to the infamously famous `FREAKY BACKSHOTS CLIFF`. The reviews had images with a QR code which led us to a voice message.  
 
 We drew out the spectrogram of the audio to get the first part of the flag.  
 `nite{4_wannabe_`  
