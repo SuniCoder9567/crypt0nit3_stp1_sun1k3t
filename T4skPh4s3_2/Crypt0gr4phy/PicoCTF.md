@@ -120,3 +120,40 @@ b'picoCTF{pl33z_n0_g1v3_c0ngru3nc3_0f_5qu4r35_92fe3557}'
 ```
 
 > FLAG -> picoCTF{pl33z_n0_g1v3_c0ngru3nc3_0f_5qu4r35_92fe3557}
+
+# SRA
+I have experienced a similar type of chal in cryptohack. I was given the value of c,d and e. From just c and d, we can calculate the value of p & q using an algorithm mentioned in _https://www.di-mgt.com.au/rsa_factorize_n.html_. 
+I create my script based on this algorithm.
+```
+from sympy import divisors, isprime
+from math import gcd
+
+def find_primes(k, e):
+   
+    for pm1 in divisors(k):  
+        p = pm1 + 1
+        
+        if isprime(p) and p.bit_length() == 128:
+            for j in range(1, e):  
+                if k % j != 0:  
+                    continue
+            
+                q = (k // j // pm1) + 1
+                if isprime(q) and q.bit_length() == 128:
+                    print(f"Milgaya: p = {p}, q = {q}")
+                    return p, q
+    print("Nahi hai.")
+    return None, None
+
+
+if __name__ == "__main__":
+    k = 1725809408520309935408578378259035782206215788626506222040601783821068202817925200
+    e = 65537  
+    primes = find_primes(k, e)
+    
+
+```
+I perform RSA functions on the received primes to get the following byte string and give it to the server which in turn gives me the flag.
+
+![Screenshot 2024-12-27 193619](https://github.com/user-attachments/assets/7eb29b06-721f-46a5-bab7-7420e08a3818)
+> FLAG -> picoCTF{7h053_51n5_4r3_n0_m0r3_38268294}
