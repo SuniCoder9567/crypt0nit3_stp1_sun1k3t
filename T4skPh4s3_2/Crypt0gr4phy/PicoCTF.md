@@ -191,3 +191,7 @@ b'picoCTF{m4yb3_Th0se_m3s54g3s_4r3_difurrent_5052620}'
 
 
 > FLAG -> picoCTF{m4yb3_Th0se_m3s54g3s_4r3_difurrent_5052620}
+
+# flag_printer
+Whosoever put this chal in the TP, bro why ;-;.
+
