@@ -67,7 +67,7 @@ So what this script does basically is, that it starts with a known part of the f
 > FLAG -> picoCTF{bad_1d3a5_1314164}
 
 # Sum-O-Primes  
-I took some help from my friend Chat Gupta and generated this script which helps to find primes if both sum and product is given. 
+I took some help from the internet and generated this script which helps to find primes if both sum and product is given. 
 ```
 from sympy import sqrt
 
@@ -194,4 +194,179 @@ b'picoCTF{m4yb3_Th0se_m3s54g3s_4r3_difurrent_5052620}'
 
 # flag_printer
 Whosoever put this chal in the TP, bro why ;-;.
+So from what I understood reading the code is basically that the script begins by reading data from a file called `encoded.txt`. Each line of this file contains two integers x and y, which represent the coordinates of points on a curve. These points are stored as tuples (x, y) in the list points.  
 
+Then it generates a Galois Field `GF` of size `MOD=7514777789`.  
+
+For each point, a set of linear eqs is set up. The `y` seems to generate some sort of solution vector and for each x, a row is created in the matrix by calculating the powers of x modulo MOD. From what I discovered from the internet is that this is a Vandermonde Matrix.
+`np.linalg.solve` seems to solve this set of linear equations whic generates the flag.  
+
+But from the code itself and the given file `encoded.txt` which has `1769611` lines! It is clear that the code will take forever to run. (It's not like I did not try to run it and expected it to work fast smh).
+
+I refered to the hint which gave some sort of a quadratic equation. From there, I deduced that the coefficients need to be analysed. The function hides in the points given. So, welcome back Engineering MAthematics 1. We bring back our old friend `INTERPOLATION`. The tried different forms of interpolation but still taking too long to run. I lost patience. I searched google for faster ways to interpolate and guess what just like fast-transpose, `fast-interpolation` exists too. I took help from random websites (even a writeup because till now I had arrived to the conclusion that I have to use fast-interpolation) and cooked up the script to solve the question.
+
+```
+from sage.all import GF, PolynomialRing
+from math import ceil, log
+import sys
+sys.setrecursionlimit(1000000)
+
+class Tree:
+    def __init__(self, poly, X, left=None, right=None):
+        self.left = left
+        self.right = right
+        self.poly = poly
+        self.X = X
+
+    def __len__(self):
+        return len(self.X)
+
+    def __mul__(self, other):
+        return Tree(self.poly * other.poly, self.X + other.X, self, other)
+    
+    def __call__(self, *args, **kwargs):
+        return self.poly(*args, **kwargs)
+
+def comp_tree(X, R):
+    if not X:
+        return None
+    
+    if len(X) == 1:
+        x = R.gen()
+        return Tree(R(x - X[0]), [X[0]])
+
+    x = R.gen()
+    nodes = [Tree(R(x - xk), [xk]) for xk in X]
+    
+    while len(nodes) > 1:
+        new_nodes = []
+        for i in range(0, len(nodes) - 1, 2):
+            new_nodes.append(nodes[i] * nodes[i + 1])
+        if len(nodes) % 2:
+            new_nodes.append(nodes[-1])
+        nodes = new_nodes
+    
+    return nodes[0]
+
+def fast_eval(f, tree):
+    if tree is None:
+        return []
+    
+    if len(tree.X) == 1:
+        return [f(-tree.poly[0])]
+    
+    if f.degree() == 0:
+        return [f] * len(tree.X)
+
+    A = []
+    B = []
+    
+    if tree.left:
+        _, r1 = f.quo_rem(tree.left.poly)
+        A = fast_eval(r1, tree.left)
+    if tree.right:
+        _, r2 = f.quo_rem(tree.right.poly)
+        B = fast_eval(r2, tree.right)
+        
+    return A + B
+
+def calc_weights(Y, tree):
+    if tree is None or not Y:
+        return []
+    
+    try:
+        derivative = tree.poly.derivative()
+        weights = fast_eval(derivative, tree)
+        if not weights:
+            return []
+        return [y/w for y, w in zip(Y, weights) if w != 0]
+    except Exception as e:
+        print(f"Error in calc_weights: {e}")
+        return []
+
+def fast_interpolate_recursive(weights, tree):
+    if tree is None or not weights:
+        return 0
+    
+    if len(tree.X) == 1:
+        if weights:
+            return weights[0]
+        return 0
+
+    try:
+        mid = len(tree.left.X) if tree.left else 0
+        W1 = weights[:mid]
+        W2 = weights[mid:]
+        
+        r0 = fast_interpolate_recursive(W1, tree.left) if tree.left else 0
+        r1 = fast_interpolate_recursive(W2, tree.right) if tree.right else 0
+        
+        result = r0 * tree.right.poly if tree.right else 0
+        result += r1 * tree.left.poly if tree.left else 0
+        
+        return result
+    except Exception as e:
+        print(f"Error in fast_interpolate_recursive: {e}")
+        return 0
+
+def get_coefficients(poly):
+    coeffs = []
+    for coeff in poly.coefficients(sparse=False)[:-1]:
+        coeff_int = int(coeff)
+        if coeff_int < 0:
+            coeff_int = 256 + coeff_int
+        coeffs.append(coeff_int % 256)
+    return coeffs
+
+def main():
+    try:
+        print("Reading input points...")
+        X, Y = [], []
+        with open('encoded.txt', 'r') as f:
+            for line in f:
+                x, y = map(int, line.strip().split())
+                X.append(x)
+                Y.append(y)
+
+        print(f"Read {len(X)} points")
+
+        MOD = 7514777789
+        K = GF(MOD)
+        R = PolynomialRing(K, 'x')
+        
+        print("Building computation tree...")
+        tree = comp_tree(X, R)
+        if tree is None:
+            raise ValueError("Failed to build computation tree")
+        
+        print("Computing weights...")
+        weights = calc_weights(Y, tree)
+        if not weights:
+            raise ValueError("Failed to compute weights")
+        
+        print("Performing fast interpolation...")
+        result = fast_interpolate_recursive(weights, tree)
+        if result == 0:
+            raise ValueError("Interpolation failed")
+        
+        print("Processing coefficients...")
+        coeffs = get_coefficients(result)
+        
+        print(f"Writing {len(coeffs)} bytes to output.bmp...")
+        with open("output.bmp", "wb") as f:
+            f.write(bytes(coeffs))
+        
+        print("Done!")
+        
+    except Exception as e:
+        print(f"Error in main: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+```
+This generated the output.bmp which was corrupted and not opening. Even more frustration, I just put the image on my website and out of luck, there it was. The flag was in plain sight.  
+
+
+![Screenshot 2024-12-30 170728](https://github.com/user-attachments/assets/50ad3947-63dd-4405-a97f-740cf4ecb36f)  
+> FLAG -> picoctf{i_do_hope_you_used_the_favorite_algorithm_of_every_engineering_student}
