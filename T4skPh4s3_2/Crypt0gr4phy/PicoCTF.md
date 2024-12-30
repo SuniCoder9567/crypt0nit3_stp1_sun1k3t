@@ -365,7 +365,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-This generated the output.bmp which was corrupted and not opening. Even more frustration, I just put the image on my website and out of luck, there it was. The flag was in plain sight.  
+This generated the output.bmp which was corrupted and not opening. Even more frustration, I just put the image on my web browser and out of luck, there it was. The flag was in plain sight.  
 
 
 ![Screenshot 2024-12-30 170728](https://github.com/user-attachments/assets/50ad3947-63dd-4405-a97f-740cf4ecb36f)  
