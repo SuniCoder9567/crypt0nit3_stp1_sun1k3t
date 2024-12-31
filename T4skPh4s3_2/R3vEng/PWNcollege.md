@@ -27,3 +27,18 @@ pwn.college{QbMfLNEkK-qjjQE_iA_cmkWB2Yg.0VM1IDL3AjN1czW}
 > FLAG -> pwn.college{QbMfLNEkK-qjjQE_iA_cmkWB2Yg.0VM1IDL3AjN1czW}
 
 # Level 1.1
+Well for this one, it was the same as the previous one but just with a lil twist. This time, no expected outcome was shown.  
+So I ran `strings` for the challenge hoping I would find smth similar to the prev license key.  
+Turns out I found `kwlpg` which seemed like it could be the license key. No problem in trying.  
+I put it in, I get the flag.
+```
+Ready to receive your license key!
+
+kwlpg
+Checking the received license key!
+
+You win! Here is your flag:
+pwn.college{ofkpZytt4JvcPhJ7ZWpWzrGI5iP.0lM1IDL3AjN1czW}
+```
+
+> FLAG -> pwn.college{ofkpZytt4JvcPhJ7ZWpWzrGI5iP.0lM1IDL3AjN1czW}
