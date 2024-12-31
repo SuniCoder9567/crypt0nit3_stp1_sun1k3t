@@ -40,5 +40,37 @@ Checking the received license key!
 You win! Here is your flag:
 pwn.college{ofkpZytt4JvcPhJ7ZWpWzrGI5iP.0lM1IDL3AjN1czW}
 ```
+# Level 2.0
+For this chal, I did the same as I was doing for Level 1.0, I ran the challenge file and expected it so provide me with some sort of information about the expected outcome.  
+And it did.  
+It turns out the indexes `2 and 4 were swapped`.  
+So I convert the expected outcome into ASCII, `mdtkq` but I provide the license key as `mdqkt` so that when the swapping occurs, `mdtkq` is received as the license key.
+```
+mdqkt
+Initial input:
+
+        6d 64 71 6b 74
+
+This challenge is now mangling your input using the `swap` mangler for indexes `2` and `4`.
+
+This mangled your input, resulting in:
+
+        6d 64 74 6b 71
+
+The mangling is done! The resulting bytes will be used for the final comparison.
+
+Final result of mangling input:
+
+        6d 64 74 6b 71
+
+Expected result:
+
+        6d 64 74 6b 71
+
+Checking the received license key!
+
+You win! Here is your flag:
+pwn.college{QlD1vMHbxstD93QV-BWdUIzQTHk.01M1IDL3AjN1czW}
+```
 
 > FLAG -> pwn.college{ofkpZytt4JvcPhJ7ZWpWzrGI5iP.0lM1IDL3AjN1czW}
