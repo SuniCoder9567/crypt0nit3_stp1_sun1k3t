@@ -197,6 +197,62 @@ pwn.college{cw3F-5YU-xNMMvLYqS17Gd1SweE.0FO1IDL3AjN1czW}
 > FLAG -> pwn.college{cw3F-5YU-xNMMvLYqS17Gd1SweE.0FO1IDL3AjN1czW}
 
 # LEVEL 5.0 
+This chal uses XOR mangling with `key=0xe5`. I reverse XOR'd `86 81 96 84 88` to get `cdsam` after ASCII conversion. This gave me the flag.
+```
+Expected result:
 
+        86 81 96 84 88
 
+Checking the received license key!
+
+You win! Here is your flag:
+pwn.college{couPCVIpPd93-PG3NkrdTwpvYJz.0VO1IDL3AjN1czW}
+```
+> FLAG -> pwn.college{couPCVIpPd93-PG3NkrdTwpvYJz.0VO1IDL3AjN1czW}
+
+# LEVEL 5.1
+For this chal, I disassembled the file with `Ghidra`. The expectec outcome was `{wkre`.
+```
+                             LAB_001014b7                                    XREF[1]:     001014d8(j)  
+        001014b7 8b 45 ec        MOV        EAX,dword ptr [RBP + local_1c]
+        001014ba 48 98           CDQE
+        001014bc 0f b6 44        MOVZX      EAX,byte ptr [RBP + RAX*0x1 + -0xe]
+                 05 f2
+        001014c1 83 f0 1c        XOR        EAX,0x1c
+        001014c4 89 c2           MOV        EDX,EAX
+        001014c6 8b 45 ec        MOV        EAX,dword ptr [RBP + local_1c]
+        001014c9 48 98           CDQE
+        001014cb 88 54 05 f2     MOV        byte ptr [RBP + RAX*0x1 + -0xe],DL
+        001014cf 90              NOP
+        001014d0 83 45 ec 01     ADD        dword ptr [RBP + local_1c],0x1
+```
+Analyzing this, XOR operation is taking place with key `0x1c`. So I reverse XOR's the outccome to get the pre mangled license key as `awkny`.
+```
+Ready to receive your license key!
+
+akwny
+Checking the received license key!
+
+You win! Here is your flag:
+pwn.college{oLekDikCY48JRtcl1VHF-4iyLgm.0FM2IDL3AjN1czW}
+```
+> FLAG -> pwn.college{oLekDikCY48JRtcl1VHF-4iyLgm.0FM2IDL3AjN1czW}
+
+# LEVEL 6.0
+For this challenge we were given a bunch of instructions -> `reverse -> swap chars at ind 3 and 5 -> reverse`, following the steps, I made the original ASCII string which after undergoing the mangling matches expected output.  
+`ydzcxcpshmhqnonlcw1` is the string I put in.
+
+```
+Expected result:
+
+        79 64 7a 63 78 63 70 73 68 6d 68 71 6e 6f 6e 6c 63 77
+
+Checking the received license key!
+
+You win! Here is your flag:
+pwn.college{gZ4GtkXGzDuowzo30W74OeKD67s.0VM2IDL3AjN1czW}
+```
+> FLAG -> pwn.college{gZ4GtkXGzDuowzo30W74OeKD67s.0VM2IDL3AjN1czW}
+
+# LEVEL 6.1
 
