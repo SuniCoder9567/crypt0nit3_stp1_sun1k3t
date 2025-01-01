@@ -294,3 +294,18 @@ pwn.college{I5I2NYC32vkz6NB2H3vZB-jNk06.0lM2IDL3AjN1czW}
 > FLAG -> pwn.college{I5I2NYC32vkz6NB2H3vZB-jNk06.0lM2IDL3AjN1czW}
 
 # LEVEL 7.0
+Anoter Expected Output revealer. , classic `.0` chals.
+For this chal we have to `reverse the byte order to undo the reverse operation` and  `apply XOR alternately with 0x99 and 0xAB to perform our reverse XOR`.
+```
+Expected result:
+
+        e1 d3 e1 dc ef dd ec df ea d9 eb db f4 c7 f2 c2 f1 cc fe ce fc cf fd c8 f8
+
+Checking the received license key!
+
+You win! Here is your flag:
+pwn.college{c6dGTob2O3hgq9ulW-g6uJ59t52.01M2IDL3AjN1czW}
+```
+> FLAG -> pwn.college{c6dGTob2O3hgq9ulW-g6uJ59t52.01M2IDL3AjN1czW}
+
+# LEVEL 7.1
