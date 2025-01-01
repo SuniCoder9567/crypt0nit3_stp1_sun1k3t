@@ -255,4 +255,42 @@ pwn.college{gZ4GtkXGzDuowzo30W74OeKD67s.0VM2IDL3AjN1czW}
 > FLAG -> pwn.college{gZ4GtkXGzDuowzo30W74OeKD67s.0VM2IDL3AjN1czW}
 
 # LEVEL 6.1
+Analyzing the code, I understood the C function was doing two things, In the first run -> `XOR with 0x09 for even indices` and `XOR with 0xFE for odd indices`.  
+And in the Second run `The buffer was reversed for the first 9 bytes and the last 9 bytes`  
+As the prev chals, I rev XOR'd it using a script where I loaded the data from a given data set :-
+```
+DAT_00104010                                    XREF[1]:     FUN_001013b0:00101599(*)  
+        00104010 6c              ??         6Ch    l
+        00104011 84              ??         84h
+        00104012 64              ??         64h    d
+        00104013 91              ??         91h
+        00104014 67              ??         67h    g
+        00104015 9a              ??         9Ah
+        00104016 70              ??         70h    p
+        00104017 95              ??         95h
+        00104018 79              ??         79h    y
+        00104019 87              ??         87h
+        0010401a 70              ??         70h    p
+        0010401b 8f              ??         8Fh
+        0010401c 6e              ??         6Eh    n
+        0010401d 8e              ??         8Eh
+        0010401e 71              ??         71h    q
+        0010401f 84              ??         84h
+        00104020 65              ??         65h    e
+        00104021 91              ??         91h
+        00104022 7e              ??         7Eh    ~
+        00104023 00              ??         00h
+```
+I got the ascii string as `pwn.college{I5I2NYC32vkz6NB2H3vZB-jNk06.0lM2IDL3AjN1czW}`
+```
+Ready to receive your license key!
 
+wolzxpgqyypkydnomze
+Checking the received license key!
+
+You win! Here is your flag:
+pwn.college{I5I2NYC32vkz6NB2H3vZB-jNk06.0lM2IDL3AjN1czW}
+```
+> FLAG -> pwn.college{I5I2NYC32vkz6NB2H3vZB-jNk06.0lM2IDL3AjN1czW}
+
+# LEVEL 7.0
