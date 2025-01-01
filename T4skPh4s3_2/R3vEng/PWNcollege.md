@@ -256,7 +256,7 @@ pwn.college{gZ4GtkXGzDuowzo30W74OeKD67s.0VM2IDL3AjN1czW}
 
 # LEVEL 6.1
 Analyzing the code, I understood the C function was doing two things, In the first run -> `XOR with 0x09 for even indices` and `XOR with 0xFE for odd indices`.  
-And in the Second run `The buffer was reversed for the first 9 bytes and the last 9 bytes`  
+And in the second run, `The buffer was reversed for the first 9 bytes and the last 9 bytes`  
 As the prev chals, I rev XOR'd it using a script where I loaded the data from a given data set :-
 ```
 DAT_00104010                                    XREF[1]:     FUN_001013b0:00101599(*)  
@@ -281,7 +281,7 @@ DAT_00104010                                    XREF[1]:     FUN_001013b0:001015
         00104022 7e              ??         7Eh    ~
         00104023 00              ??         00h
 ```
-I got the ascii string as `pwn.college{I5I2NYC32vkz6NB2H3vZB-jNk06.0lM2IDL3AjN1czW}`
+I got the ascii string as `wolzxpgqyypkydnomze`
 ```
 Ready to receive your license key!
 
@@ -309,3 +309,23 @@ pwn.college{c6dGTob2O3hgq9ulW-g6uJ59t52.01M2IDL3AjN1czW}
 > FLAG -> pwn.college{c6dGTob2O3hgq9ulW-g6uJ59t52.01M2IDL3AjN1czW}
 
 # LEVEL 7.1
+
+
+
+
+# LEVEL 8.0
+pwncollege loves `XOR` don't it.  
+
+We start by swapping back those bytes that got all mixed up at indexes 19 and 35. Think of it like playing a game of memory match, but we’re reversing it. Next, we hit the whole thing with the XOR key `0xe1d4f7`, which is like smashing the reset button on a game controller — it starts to look like it’s supposed to! But wait, there’s more! We follow that up with a little XOR action using `0xd3`, which is like applying a quick polish to the mess. Things are looking better now, but we’re not done yet! Now we bring in the heavy hitter: XOR with `0x36025d4b69fb02`. It’s like unwrapping a mystery box, and finally, we’re nearly there. To wrap things up, we hit it one last time with `0xd521e57a0624` — the grand finale of XORs. Boom, everything clicks back into place, and we’ve got the original input back, like a hero returning to normal after a wild adventure!
+
+```
+Expected result:
+
+        b0 47 f8 64 00 93 8c 79 aa 7c 20 03 77 4f 9c 21 31 25 fe 4f b2 0f 71 2f df 3b 4f 3f 42 74 cc 1a df ca 7a ac 9f
+
+Checking the received license key!
+
+You win! Here is your flag:
+pwn.college{gkfU8kJ9AGOw5afx0OhLKS9f4wf.0VN2IDL3AjN1czW}
+```
+> FLAG -> pwn.college{gkfU8kJ9AGOw5afx0OhLKS9f4wf.0VN2IDL3AjN1czW}
