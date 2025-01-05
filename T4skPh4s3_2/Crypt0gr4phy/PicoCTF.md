@@ -201,9 +201,9 @@ Then it generates a Galois Field `GF` of size `MOD=7514777789`.
 For each point, a set of linear eqs is set up. The `y` seems to generate some sort of solution vector and for each x, a row is created in the matrix by calculating the powers of x modulo MOD. From what I discovered from the internet is that this is a Vandermonde Matrix.
 `np.linalg.solve` seems to solve this set of linear equations whic generates the flag.  
 
-But from the code itself and the given file `encoded.txt` which has `1769611` lines! It is clear that the code will take forever to run. (It's not like I did not try to run it and expected it to work fast smh).
+But from the code itself and the given file `encoded.txt` which has `1769611` lines! It is clear that the code will take forever to run. (It's not like I did not try to tweak and run it and expected it to work fast smh).
 
-I refered to the hint which gave some sort of a quadratic equation. From there, I deduced that the coefficients need to be analysed. The function hides in the points given. So, welcome back Engineering MAthematics 1. We bring back our old friend `INTERPOLATION`. The tried different forms of interpolation but still taking too long to run. I lost patience. I searched google for faster ways to interpolate and guess what just like fast-transpose, `fast-interpolation` exists too. I took help from random websites (even a writeup because till now I had arrived to the conclusion that I have to use fast-interpolation) and cooked up the script to solve the question.
+I refered to the hint which gave generic form of a quadratic equation. From there, I deduced that the coefficients need to be analysed. The function hides in the points given. So, welcome back Engineering MAthematics 1. We bring back our old friend `INTERPOLATION`. The tried different forms of interpolation but still taking too long to run. I lost patience. I searched google for faster ways to interpolate and guess what just like fast-transpose, `fast-interpolation` exists too. I took help from random websites (even a writeup because till now I had arrived to the conclusion that I have to use fast-interpolation) and cooked up the script to solve the question.
 
 ```
 from sage.all import GF, PolynomialRing
