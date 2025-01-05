@@ -48,5 +48,26 @@ print(res)
 ```
 > FLAG -> crypto{4215,2162}
 
-# EFFICIENT EXCHANGE
+## EFFICIENT EXCHANGE
 
+So we gotta calculate the shared secret but only the x coordinate from Alice is given `(815,3190)`.  
+We are not given the y coordinate but we are given a set of hints from which we can derive the y coordinate.  
+THe first thought that struck my mind was obviously to pu the value of x in the `Weierstrass equation` to get `y^2` out of it.  
+Now to derive why from it, we are give the hint that the relation `p≡3mod4` is gonna help us calculate y from y^2.  
+So, first let us calculate the two possible value of y.  
+I wrote the block for that.
+```
+def sqrt(ysq, p):
+    for i in range(1, p):
+        if pow(i, 2) % p == ysq: #we need to consider with regard of %p as we are working with a finite field
+            return (i, p - i)
+```
+So implementing this I found the two possible values of y to be `3452 & 6287`.  
+Now to decide which is the correct one, we will use the hint they gave us (listed above).  
+We need to check if `y % 4 == 3` in each case. The value of `y` which satisfies the case will be treated as the y component of Alice's public key.  
+We find out that y2 aka `p-i` satisfies the relation, therefore satisfies the y component.  
+We calculate the shared secret and give the x component to `decrypt.py` along with iv and ctext and just like that, we get aour flag.
+
+> FLAG -> crypto{3ff1c1ent_k3y_3xch4ng3}
+
+# FLIPPY - MetaCTF
