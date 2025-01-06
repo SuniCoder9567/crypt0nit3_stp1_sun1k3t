@@ -119,3 +119,21 @@ So, how do I find the flag from here. The first thing I did, was I pulled up Bur
 
 > FLAG -> picoCTF{G3tting_5QL_1nJ3c7I0N_l1k3_y0u_sh0ulD_c8ee9477}
 
+# SOAP
+Well from the categories itself we find out that the challenge wants us to retreive the flag from the `/etc/passwd` file using `XXE Injection`.  
+I looked online for `XML/XXE` injection formats and found a git repo full of such commands. 
+> SOURCE -> _https://github.com/payloadbox/xxe-injection-payload-list_
+Now I found this particular payload which could give me the flag, so I modify this acc to the challenge and send this in `BurpSuite` along with `POST` request.
+```
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE data [<!ENTITY flag SYSTEM "file:///etc/passwd">]> 
+<data> <ID> &flag; </ID> </data>
+```
+![Screenshot 2025-01-06 192742](https://github.com/user-attachments/assets/f56ba12e-98bd-4ee2-9709-0624a2c494c5)  
+But surprisingly `POST` was not an allowed method!  
+I was surprised on how this was not working and went to check out other writeups for the same chal and turns out that they used `POST`.  
+This leaves only one outcome, the chal broke, it crashed, it burnt.  
+### WHAT THE FLAG SHOULD HAVE BEEN
+> FLAG -> picoCTF{XML_3xtern@l_3nt1t1ty_XXXXXXX}
+
+
