@@ -71,3 +71,39 @@ We calculate the shared secret and give the x component to `decrypt.py` along wi
 > FLAG -> crypto{3ff1c1ent_k3y_3xch4ng3}
 
 # FLIPPY - MetaCTF
+Took me some time to do it but I finally did so,  
+The challenge provides a service that encrypts messages using CBC mode encryption. Our goal is to manipulate the encrypted message to execute code that prints the flag instead of our original input.
+The service appears to have two main functions:
+
+Encrypt a message  
+
+Decrypt and process a message  
+
+
+When we send a message for encryption, it returns the IV and ciphertext in hex format. The interesting part is that the service likely evaluates the decrypted message as Ruby code (indicated by the puts command format)  
+Doing sm research, it turns out that CBC mode encryption is malleable i.e. we can modify the IV to cause predictable changes in the decrypted plaintext  
+First we initialise, `now` and `send`, `now` is the message we are sending and send is the message we want to forge `now` into.
+```
+send = "puts       FLAG"
+now = f"puts 'abcdefgh'"
+assert len(target) == len(current)
+```
+The only possible solution is bit flipping using XOR.
+```
+xor = [ord(i) ^ ord(j) for i, j in zip(send, now)]
+xor = itertools.chain(xor, itertools.cycle([0]))
+newiv = bytes([i ^ j for i, j in zip(iv, xor)]).hex()
+```
+In CBC mode: Plaintext = Decrypt(Ciphertext) ⊕ IV  
+
+If we want to change the plaintext from A to B:  
+
+We need: Decrypt(Ciphertext) xor'd new_IV = B  
+
+This means: new_IV = original_IV xor'd (A ⊕ B)
+
+We combine this with the ciphertext (other 32 hex chars) and send it for decryption and voila we get the flag.  
+
+_Note: The server connection was not provided so I made my own flag and retrieved it_
+
+> FLAG -> MetaCTF{plz_solve_hojana}
