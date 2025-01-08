@@ -98,7 +98,7 @@ In CBC mode: plaintext = decrypt(ct) xor'd IV
 
 If we want to change the plaintext from A to B:  
 
-We need: decrypt(ct) xor'd new_IV = B  
+We need: decrypt(ct) xor'd newiv = B  
 
 This means: newiv = ogiv xor'd (A xor'd B)
 
