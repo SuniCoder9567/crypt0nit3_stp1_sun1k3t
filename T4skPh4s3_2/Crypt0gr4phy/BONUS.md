@@ -94,13 +94,13 @@ xor = [ord(i) ^ ord(j) for i, j in zip(send, now)]
 xor = itertools.chain(xor, itertools.cycle([0]))
 newiv = bytes([i ^ j for i, j in zip(iv, xor)]).hex()
 ```
-In CBC mode: Plaintext = Decrypt(Ciphertext) ⊕ IV  
+In CBC mode: plaintext = decrypt(ct) xor'd IV  
 
 If we want to change the plaintext from A to B:  
 
-We need: Decrypt(Ciphertext) xor'd new_IV = B  
+We need: decrypt(ct) xor'd new_IV = B  
 
-This means: new_IV = original_IV xor'd (A ⊕ B)
+This means: newiv = ogiv xor'd (A xor'd B)
 
 We combine this with the ciphertext (other 32 hex chars) and send it for decryption and voila we get the flag.  
 
